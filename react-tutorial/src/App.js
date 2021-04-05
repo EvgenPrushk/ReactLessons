@@ -1,25 +1,26 @@
 import React from "react";
+import { useState } from "react";
 // import { useState } from "react";
-import Button from "./Button";
+import Content from "./Content";
+import RecursiveButton from "./RecursiveButton";
 
 function App(props) {
-  const handlerThirdClick = () => {
-    console.log("3-й клик выполнен");
-  };
+  const [showMode, setShowMode] = useState(true);
+
   const handlerClick = () => {
-    console.log("handlerClick fired");
+    setShowMode(!showMode);
   };
-  const handlerMouseEnter = () => {
-    console.log("onMouseEnter called");
-  };
+  let content = null;
+  if (showMode) {
+    content = <Content />;
+  } else {
+  }
   return (
-    <Button
-      onThirdClick={handlerThirdClick}
-      onClick={handlerClick}
-      onMouseEnter={handlerMouseEnter}
-    >
-      Новый текст для кнопки
-    </Button>
+    <div>
+      <RecursiveButton />
+      <button onClick={handlerClick}>Show toggle</button>
+      {content}
+    </div>
   );
 }
 
