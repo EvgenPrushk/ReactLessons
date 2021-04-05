@@ -1,25 +1,47 @@
 import React from "react";
-// import { useState } from "react";
 import { useState } from "react";
-import Content from "./Content";
-import RecursiveButton from "./RecursiveButton";
+// import { useState } from "react";
+// import Content from "./Content";
+// import RecursiveButton from "./RecursiveButton";
 
 function App(props) {
-  const [checked, setChecked] = useState(false);
-
+  const [value, setValue] = useState("Яблоко");
+  const handlerChange = (e) => {
+    setValue(e.target.value);
+    console.log(e.target.value);
+  };
   return (
-    <div>
-      <label>
-        <input
-          type="checkbox"
-          checked={checked}
-          onChange={() => setChecked(!checked)}
-          />
-          Какое-то значениe
-      </label>
-    </div>
+    <select value={value} onChange={handlerChange}>
+      <option value="Яблоко">Яблоко</option>
+      <option value="Банан">Банан</option>
+      <option value="Кокос">Кокос</option>
+      <option value="Виноград">Виноград</option>
+      <option value="Слива">Слива</option>
+    </select>
   );
 }
+
+// function App(props) {
+//   const [checked, setChecked] = useState(false);
+
+//   const item = ["Яблоко", "Банан", "Кокос", "Виноград", "Слива"];
+//   return (
+//     <ul>
+//       {item.map((item) => (
+//         <li key={item}>
+//           <label>
+//             <input
+//               type="radio"
+//               checked={checked === item}
+//               onChange={() => setChecked(item)}
+//             />
+//             {item}
+//           </label>
+//         </li>
+//       ))}
+//     </ul>
+//   );
+// }
 // 09-31
 // class App extends React.Component {
 //   constructor(props) {
