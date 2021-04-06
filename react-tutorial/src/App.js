@@ -1,25 +1,38 @@
 import React from "react";
-import { useState } from "react";
+// import { useState } from "react";
 // import { useState } from "react";
 // import Content from "./Content";
 // import RecursiveButton from "./RecursiveButton";
+import CityesList from "./CitiesList";
+import City from "./City";
 
 function App(props) {
-  const [value, setValue] = useState("Яблоко");
-  const handlerChange = (e) => {
-    setValue(e.target.value);
-    console.log(e.target.value);
-  };
   return (
-    <select value={value} onChange={handlerChange}>
-      <option value="Яблоко">Яблоко</option>
-      <option value="Банан">Банан</option>
-      <option value="Кокос">Кокос</option>
-      <option value="Виноград">Виноград</option>
-      <option value="Слива">Слива</option>
-    </select>
-  );
+    <div>
+      <City />
+      <CityesList />
+    </div>
+  )
 }
+
+
+
+// function App(props) {
+//   const [value, setValue] = useState("Яблоко");
+//   const handlerChange = (e) => {
+//     setValue(e.target.value);
+//     console.log(e.target.value);
+//   };
+//   return (
+//     <select value={value} onChange={handlerChange}>
+//       <option value="Яблоко">Яблоко</option>
+//       <option value="Банан">Банан</option>
+//       <option value="Кокос">Кокос</option>
+//       <option value="Виноград">Виноград</option>
+//       <option value="Слива">Слива</option>
+//     </select>
+//   );
+// }
 
 // function App(props) {
 //   const [checked, setChecked] = useState(false);
