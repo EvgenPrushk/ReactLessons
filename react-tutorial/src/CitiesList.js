@@ -9,11 +9,7 @@ export default function CitiesList(props) {
     { name: "Zelenograd", describtion: "Научный спутник москвы" },
   ]);
 
-  return (
-    <ul>
-      {cities.map((city) => (
-        <li key={city.name}>{city.name}</li>
-      ))}
-    </ul>
-  );
+  return <ul>
+    {cities.map((city) => (<li key={city.name}>{city.name}</li>))}
+  </ul>
 }
