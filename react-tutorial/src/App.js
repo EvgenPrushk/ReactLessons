@@ -1,28 +1,62 @@
- import React, { useEffect } from "react";
-import  { useState } from "react";
-
+import React from "react";
+import { useState } from "react";
 
 // import Content from "./Content";
 // import RecfunursiveButton from "./RecursiveButton";
 // import CityesList from "./CitiesList";
 // import City from "./City";
 
-function App() {
-
-  const [timer, setTimer] = useState(0);
-  //useEffect  triggered immediately  after component creation
-  useEffect(() => {
-    const flagInterval = setInterval(() =>{
-      setTimer(timer + 1)
-      console.log('fired');
-    } , 1000)
-    //
-    return () => clearInterval(flagInterval)
-  })
- 
-  //stop rendering and clenning
-  return <p id="target">{timer}</p>
+function createUser(name, surename) {
+  const user = {name, surename} 
+  console.log(user);
+  return user;
 }
+
+function App() {
+  const [name, setName] = useState("");
+  const [surename, setSurename] = useState("");
+  const [counter, setCounter] = useState("");
+
+  const generateUser +
+  const user = createUser(name, surename );
+
+  return (
+    <div>
+      <button onClick={()=> setCounter(counter + 1)}>На меня нажали {counter} раз</button>
+      <br/>
+      <input
+        type="text"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      ></input>
+      <br />
+      <input
+        type="text"
+        value={surename}
+        onChange={(e) => setSurename(e.target.value)}
+      ></input>
+      <br />
+      <pre>{JSON.stringify(user, null, 2)}</pre>
+    </div>
+  );
+}
+
+// function App() {
+
+//   const [timer, setTimer] = useState(0);
+//   //useEffect  triggered immediately  after component creation
+//   useEffect(() => {
+//     const flagInterval = setInterval(() =>{
+//       setTimer(timer + 1)
+//       console.log('fired');
+//     } , 1000)
+//     //
+//     return () => clearInterval(flagInterval)
+//   })
+
+//   //stop rendering and clenning
+//   return <p id="target">{timer}</p>
+// }
 
 // function App() {
 //   // useEffect(() =>{
@@ -30,7 +64,6 @@ function App() {
 //   // })
 //   const [users, setUsers] = useState([]);
 //   const [search, setSearch] = useState('');
-
 
 //   useEffect(() => {
 //     fetch("./users?search=" + search)
