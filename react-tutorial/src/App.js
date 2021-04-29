@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+ import React, { useEffect } from "react";
+import  { useState } from "react";
+
 
 // import Content from "./Content";
 // import RecfunursiveButton from "./RecursiveButton";
@@ -6,17 +8,49 @@ import React, { useState } from "react";
 // import City from "./City";
 
 function App() {
-  const [counter, setCounter] = useState(0);
 
-  const handlerClick = () => {
-    // doing synx 0 + 1
-    setCounter((x, props) => x + 1);
-    //  and doing asynx 0 + 1
-    setCounter((x, props) => x + 1);
-  };
-
-  return <button onClick={handlerClick}> На меня нажали {counter} раз</button>;
+  const [timer, setTimer] = useState(0);
+  //useEffect  triggered immediately  after component creation
+  useEffect(() => {
+    const flagInterval = setInterval(() =>{
+      setTimer(timer + 1)
+      console.log('fired');
+    } , 1000)
+    //
+    return () => clearInterval(flagInterval)
+  })
+ 
+  //stop rendering and clenning
+  return <p id="target">{timer}</p>
 }
+
+// function App() {
+//   // useEffect(() =>{
+//   //   console.log(document.querySelector('#target'));
+//   // })
+//   const [users, setUsers] = useState([]);
+//   const [search, setSearch] = useState('');
+
+
+//   useEffect(() => {
+//     fetch("./users?search=" + search)
+//       .then((response) => response.json())
+//       .then((users) => setUsers(users));
+//   }, [search]);
+//   return <p id="target">Hello</p>;
+// }
+// function App() {
+//   const [counter, setCounter] = useState(0);
+
+//   const handlerClick = () => {
+//     // doing synx 0 + 1
+//     setCounter((x, props) => x + 1);
+//     //  and doing asynx 0 + 1
+//     setCounter((x, props) => x + 1);
+//   };
+
+//   return <button onClick={handlerClick}> На меня нажали {counter} раз</button>;
+// }
 
 // function App() {
 //   const [state, setState] = useState({
