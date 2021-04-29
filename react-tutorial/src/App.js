@@ -1,21 +1,49 @@
 import React from "react";
-// import { useState } from "react";
-// import { useState } from "react";
+import { useState } from "react";
+
 // import Content from "./Content";
 // import RecursiveButton from "./RecursiveButton";
 import CityesList from "./CitiesList";
 import City from "./City";
 
-function App(props) {
+function App() {
+  const [cities, setCities] = useState([
+    { name: "Moscow", description: "Столица России" },
+    { name: "Zelenograd", description: "Научный спутник москвы" },
+  ]);
+
+  // the index of the city we want to display
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const handlerChangeCity = (n, description) => {
+    setCities(
+      cities.map((city, index) => {
+        if (index === n) {
+          return {
+            ...city,
+            description,
+          };
+        }
+        return city;
+      })
+    );
+  };
+
+  const handlerSelectCity = (n) => setCurrentIndex(n)
+
+  
+
   return (
     <div>
-      <City />
-      <CityesList />
+      <City
+        cities={cities}
+        onChangeCity={handlerChangeCity}
+        currentIndex={currentIndex}
+      />
+      <CityesList cities={cities} onSelectCity ={handlerSelectCity}/>
     </div>
-  )
+  );
 }
-
-
 
 // function App(props) {
 //   const [value, setValue] = useState("Яблоко");

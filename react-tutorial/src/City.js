@@ -1,19 +1,15 @@
-import React from "react";
-import { useState } from "react";
-
-
-
 export default function City(props) {
-  const [cities, setCities] = useState([
-    { name: "Moscow", describtion: "Столица России" },
+ 
+  // displayed city
+  const city = props.cities[props.currentIndex];
 
-    { name: "Zelenograd", describtion: "Научный спутник москвы" },
-  ]);
-
-  const city = cities[0]
-  const handlerChange = 
-  return <div>
+  return (
+    <div>
       <h3>{city.name}</h3>
-      <textarea value={city.describtion} onChange ={handlerChange} />
-  </div>
+      <textarea
+        value={city.description}
+        onChange={(e) => props.onChangeCity(props.currentIndex, e.target.value)}
+      />
+    </div>
+  );
 }
