@@ -1,45 +1,66 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 // import Content from "./Content";
 // import RecfunursiveButton from "./RecursiveButton";
 // import CityesList from "./CitiesList";
 // import City from "./City";
 
-function createUser(name, surename) {
-  const user = {name, surename} 
-  console.log(user);
-  return user;
-}
-
 function App() {
-  const [name, setName] = useState("");
-  const [surename, setSurename] = useState("");
-  const [counter, setCounter] = useState("");
+  const [massage, setMassage] = useState("massage");
+  const [counter, setCounter] = useState(0);
+  // при перерендеренге конпонента функция greating создается заново
+  // для сохранения ссылки используем useCallback
+  const greating = useCallback((text) => {
+    console.log(text);
+  }, []);
 
-  const generateUser +
-  const user = createUser(name, surename );
+  useEffect(() => {
+    greating(massage);
+  }, [greating, massage]);
 
   return (
-    <div>
-      <button onClick={()=> setCounter(counter + 1)}>На меня нажали {counter} раз</button>
-      <br/>
-      <input
-        type="text"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      ></input>
-      <br />
-      <input
-        type="text"
-        value={surename}
-        onChange={(e) => setSurename(e.target.value)}
-      ></input>
-      <br />
-      <pre>{JSON.stringify(user, null, 2)}</pre>
-    </div>
+    <button onClick={() => setCounter(counter + 1)}>
+      На меня нажали {counter} раз
+    </button>
   );
 }
+
+// function createUser(name, surename) {
+//   const user = { name, surename };
+//   console.log(user);
+//   return user;
+// }
+
+// function App() {
+//   const [name, setName] = useState("");
+//   const [surename, setSurename] = useState("");
+//   const [counter, setCounter] = useState(0);
+//   // save Object using function
+//   const user = useMemo(() => createUser(name, surename), [name, surename]);
+
+//   return (
+//     <div>
+//       <button onClick={() => setCounter(counter + 1)}>
+//         На меня нажали {counter} раз
+//       </button>
+//       <br />
+//       <input
+//         type="text"
+//         value={name}
+//         onChange={(e) => setName(e.target.value)}
+//       ></input>
+//       <br />
+//       <input
+//         type="text"
+//         value={surename}
+//         onChange={(e) => setSurename(e.target.value)}
+//       ></input>
+//       <br />
+//       <pre>{JSON.stringify(user, null, 2)}</pre>
+//     </div>
+//   );
+// }
 
 // function App() {
 
