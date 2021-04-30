@@ -1,30 +1,49 @@
 import React from "react";
-import { useState, useEffect, useCallback } from "react";
+import { useReducer } from "react";
+import reducer from "./reducer";
+import { increment, decrement } from "./actions";
 
 // import Content from "./Content";
 // import RecfunursiveButton from "./RecursiveButton";
 // import CityesList from "./CitiesList";
 // import City from "./City";
+//action
 
 function App() {
-  const [massage, setMassage] = useState("massage");
-  const [counter, setCounter] = useState(0);
-  // при перерендеренге конпонента функция greating создается заново
-  // для сохранения ссылки используем useCallback
-  const greating = useCallback((text) => {
-    console.log(text);
-  }, []);
-
-  useEffect(() => {
-    greating(massage);
-  }, [greating, massage]);
+  const [state, dispatch] = useReducer(reducer, {
+    counter: 1,
+  });
 
   return (
-    <button onClick={() => setCounter(counter + 1)}>
-      На меня нажали {counter} раз
-    </button>
+    <div>
+      <button onClick={() => dispatch(decrement(1))}>-1</button>
+      <button onClick={() => dispatch(decrement(2))}>-2</button>
+
+      <span>{state.counter}</span>
+      <button onClick={() => dispatch(increment(1))}>1</button>
+      <button onClick={() => dispatch(increment(2))}>2</button>
+    </div>
   );
 }
+// function App() {
+//   const [massage, setMassage] = useState("massage");
+//   const [counter, setCounter] = useState(0);
+//   // при перерендеренге конпонента функция greating создается заново
+//   // для сохранения ссылки используем useCallback
+//   const greating = useCallback((text) => {
+//     console.log(text);
+//   }, []);
+
+//   useEffect(() => {
+//     greating(massage);
+//   }, [greating, massage]);
+
+//   return (
+//     <button onClick={() => setCounter(counter + 1)}>
+//       На меня нажали {counter} раз
+//     </button>
+//   );
+// }
 
 // function createUser(name, surename) {
 //   const user = { name, surename };
