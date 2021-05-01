@@ -1,30 +1,51 @@
-import React from "react";
-import { useReducer } from "react";
-import reducer from "./reducer";
-import { increment, decrement } from "./actions";
+import React, { useState } from "react";
+// import { useReducer } from "react";
+// import reducer from "./reducer";
+// import { increment, decrement } from "./actions";
 
 // import Content from "./Content";
 // import RecfunursiveButton from "./RecursiveButton";
 // import CityesList from "./CitiesList";
 // import City from "./City";
+import ActionsCard from "./ActionsCard";
+import StatusCard from "./StatusCard";
+import Context from "./Context";
 //action
 
 function App() {
-  const [state, dispatch] = useReducer(reducer, {
-    counter: 1,
-  });
+  const [counter, setCounter] = useState(0);
+  const count = (n) => setCounter(counter + n);
 
+  const value = {
+    counter,
+    count,
+  };
   return (
-    <div>
-      <button onClick={() => dispatch(decrement(1))}>-1</button>
-      <button onClick={() => dispatch(decrement(2))}>-2</button>
-
-      <span>{state.counter}</span>
-      <button onClick={() => dispatch(increment(1))}>1</button>
-      <button onClick={() => dispatch(increment(2))}>2</button>
-    </div>
+    <Context.Provider value={value}>
+      <div class="container">
+        <StatusCard />
+        <ActionsCard />
+      </div>
+    </Context.Provider>
   );
 }
+
+// function App() {
+//   const [state, dispatch] = useReducer(reducer, {
+//     counter: 1,
+//   });
+
+//   return (
+//     <div>
+//       <button onClick={() => dispatch(decrement(1))}>-1</button>
+//       <button onClick={() => dispatch(decrement(2))}>-2</button>
+
+//       <span>{state.counter}</span>
+//       <button onClick={() => dispatch(increment(1))}>1</button>
+//       <button onClick={() => dispatch(increment(2))}>2</button>
+//     </div>
+//   );
+// }
 // function App() {
 //   const [massage, setMassage] = useState("massage");
 //   const [counter, setCounter] = useState(0);
