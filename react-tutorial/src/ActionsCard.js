@@ -15,7 +15,7 @@ export default function ActionsCard(props) {
         <ActionCard  number={1} />
         <ActionCard number={3} />
         <ActionCard  number={5} />
-        <ActionCard  number={20} />
+        <ActionCard  number={25} />
       </div>
     </div>
   );
