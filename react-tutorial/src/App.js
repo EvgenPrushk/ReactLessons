@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 // import { useReducer } from "react";
 // import reducer from "./reducer";
 // import { increment, decrement } from "./actions";
@@ -7,30 +7,94 @@ import React, { useState } from "react";
 // import RecfunursiveButton from "./RecursiveButton";
 // import CityesList from "./CitiesList";
 // import City from "./City";
-import ActionsCard from "./ActionsCard";
-import StatusCard from "./StatusCard";
-import Context from "./Context";
-//action
+// import ActionsCard from "./ActionsCard";
+// import StatusCard from "./StatusCard";
+// import Context from "./Context";
 
-function App() {
-  const [counter, setCounter] = useState(0);
-  const count = (n) => setCounter(counter + n);
+function App(props) {
+  const [name, SetName] = useState("");
+  const [surename, SetSurename] = useState("");
 
-  const value = {
-    counter,
-    count,
+  const surenameInputRef = useRef();
+  const nameInputRef = useRef();
+
+  const handlerKeyUp1 = (e) => {
+    if ((e.key === "Enter")) {
+      surenameInputRef.current.focus();
+    }
   };
-
+  const handlerKeyUp2 = (e) => {
+    if ((e.key === "Enter")) {
+      nameInputRef.current.focus();
+    }
+  };
   return (
-    //declare global context and "value' available on all children
-    <Context.Provider value={value}>
-      <div class="container">
-        <StatusCard />
-        <ActionsCard />
-      </div>
-    </Context.Provider>
+    <form>
+      <input
+        ref={nameInputRef}
+        type="text"
+        placeholder="FirstName"
+        value={name}
+        onChange={(e) => SetName(e.target.value)}
+        onKeyUp={handlerKeyUp1}
+      ></input>
+      <br />
+      <input
+        ref={surenameInputRef}
+        type="text"
+        placeholder="SecondName"
+        value={surename}
+        onChange={(e) => SetSurename(e.target.value)}
+        onKeyUp={handlerKeyUp2}
+      ></input>
+    </form>
   );
 }
+// function App() {
+//   const [counter, setCounter] = useState(0);
+
+//   const ref = useRef();
+
+//   useEffect(() => {
+//    ref.current = {
+//      counter: 0,
+//    }
+//   }, []);
+
+//   return (
+//     <div>
+//       <button onClick={() => ref.current.counter++}>
+//       На меня нажали {counter} раз.
+//     </button>
+//     <br/>
+//     <button onClick={() =>setCounter(ref.current.counter)}>
+//       Обновить
+//     </button>
+//     </div>
+//   );
+// }
+
+//action
+
+// function App() {
+//   const [counter, setCounter] = useState(0);
+//   const count = (n) => setCounter(counter + n);
+
+//   const value = {
+//     counter,
+//     count,
+//   };
+
+//   return (
+//     //declare global context and "value' available on all children
+//     <Context.Provider value={value}>
+//       <div class="container">
+//         <StatusCard />
+//         <ActionsCard />
+//       </div>
+//     </Context.Provider>
+//   );
+// }
 
 // function App() {
 //   const [state, dispatch] = useReducer(reducer, {
