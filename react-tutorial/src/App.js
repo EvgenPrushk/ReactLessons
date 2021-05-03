@@ -20,7 +20,9 @@ function App() {
     counter,
     count,
   };
+
   return (
+    //declare global context and "value' available on all children
     <Context.Provider value={value}>
       <div class="container">
         <StatusCard />
