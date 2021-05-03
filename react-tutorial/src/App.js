@@ -1,4 +1,6 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
+import useOne from "./useOne";
+// import useCounter from "./useCounter";
 // import { useReducer } from "react";
 // import reducer from "./reducer";
 // import { increment, decrement } from "./actions";
@@ -10,46 +12,77 @@ import React, { useState, useRef } from "react";
 // import ActionsCard from "./ActionsCard";
 // import StatusCard from "./StatusCard";
 // import Context from "./Context";
+import useSmartCounter from "./useSmartCounter";
 
-function App(props) {
-  const [name, SetName] = useState("");
-  const [surename, SetSurename] = useState("");
+function App() {
+  const { counter, add1, add5, remove1, remove5 } = useSmartCounter();
 
-  const surenameInputRef = useRef();
-  const nameInputRef = useRef();
-
-  const handlerKeyUp1 = (e) => {
-    if ((e.key === "Enter")) {
-      surenameInputRef.current.focus();
-    }
-  };
-  const handlerKeyUp2 = (e) => {
-    if ((e.key === "Enter")) {
-      nameInputRef.current.focus();
-    }
-  };
   return (
-    <form>
-      <input
-        ref={nameInputRef}
-        type="text"
-        placeholder="FirstName"
-        value={name}
-        onChange={(e) => SetName(e.target.value)}
-        onKeyUp={handlerKeyUp1}
-      ></input>
+    <div>
+      <button onClick={add1}>+1</button>
       <br />
-      <input
-        ref={surenameInputRef}
-        type="text"
-        placeholder="SecondName"
-        value={surename}
-        onChange={(e) => SetSurename(e.target.value)}
-        onKeyUp={handlerKeyUp2}
-      ></input>
-    </form>
+      <button onClick={add5}>+5</button>
+      <br />
+      <p>{counter}</p>
+      <button onClick={remove1}>-1</button>
+      <br />
+      <button onClick={remove5}>-5</button>
+      <br />
+    </div>
   );
 }
+
+// function App() {
+//   useOne(() => {
+//     console.log("fired");
+//   });
+
+//   const {counter, count} = useCounter();
+//   return (
+//     <button onClick={count}>
+//       На меня нажали {counter} раз
+//     </button>
+//   );
+// }
+// function App(props) {
+//   const [name, SetName] = useState("");
+//   const [surename, SetSurename] = useState("");
+
+//   const surenameInputRef = useRef();
+//   const nameInputRef = useRef();
+
+//   const handlerKeyUp1 = (e) => {
+//     if ((e.key === "Enter")) {
+//       surenameInputRef.current.focus();
+//     }
+//   };
+//   const handlerKeyUp2 = (e) => {
+//     if ((e.key === "Enter")) {
+//       nameInputRef.current.focus();
+//     }
+//   };
+//   return (
+//     <form>
+//       <input
+//         ref={nameInputRef}
+//         type="text"
+//         placeholder="FirstName"
+//         value={name}
+//         onChange={(e) => SetName(e.target.value)}
+//         onKeyUp={handlerKeyUp1}
+//       ></input>
+//       <br />
+//       <input
+//         ref={surenameInputRef}
+//         type="text"
+//         placeholder="SecondName"
+//         value={surename}
+//         onChange={(e) => SetSurename(e.target.value)}
+//         onKeyUp={handlerKeyUp2}
+//       ></input>
+//     </form>
+//   );
+// }
 // function App() {
 //   const [counter, setCounter] = useState(0);
 
