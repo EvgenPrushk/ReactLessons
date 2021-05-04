@@ -1,9 +1,31 @@
-import React, { useState } from "react";
-import useOne from "./useOne";
+import React from "react";
+// import useOne from "./useOne";
 // import useCounter from "./useCounter";
 // import { useReducer } from "react";
 // import reducer from "./reducer";
 // import { increment, decrement } from "./actions";
+// import Mouse from "./Mouse";
+import Card from "./Card";
+
+function App() {
+    return(
+        <>
+        <Card />
+        <Card />
+        <Card />
+        </>
+    )
+}
+
+// function App() {
+//   return (
+//     <>
+//       <Mouse render={(data)=>{
+//           return <p>{data.x}:{data.y}</p>
+//       }} />
+//     </>
+//   );
+// }
 
 // import Content from "./Content";
 // import RecfunursiveButton from "./RecursiveButton";
@@ -12,25 +34,25 @@ import useOne from "./useOne";
 // import ActionsCard from "./ActionsCard";
 // import StatusCard from "./StatusCard";
 // import Context from "./Context";
-import useSmartCounter from "./useSmartCounter";
+// import useSmartCounter from "./useSmartCounter";
 
-function App() {
-  const { counter, add1, add5, remove1, remove5 } = useSmartCounter();
+// function App() {
+//   const { counter, add1, add5, remove1, remove5 } = useSmartCounter();
 
-  return (
-    <div>
-      <button onClick={add1}>+1</button>
-      <br />
-      <button onClick={add5}>+5</button>
-      <br />
-      <p>{counter}</p>
-      <button onClick={remove1}>-1</button>
-      <br />
-      <button onClick={remove5}>-5</button>
-      <br />
-    </div>
-  );
-}
+//   return (
+//     <div>
+//       <button onClick={add1}>+1</button>
+//       <br />
+//       <button onClick={add5}>+5</button>
+//       <br />
+//       <p>{counter}</p>
+//       <button onClick={remove1}>-1</button>
+//       <br />
+//       <button onClick={remove5}>-5</button>
+//       <br />
+//     </div>
+//   );
+// }
 
 // function App() {
 //   useOne(() => {
