@@ -5,9 +5,6 @@ import Context from "./Context";
 
 
 export default function ActionsCard(props) {
-  const {  count } = props;
-
-  const value= useContext(Context);
 
   return (
     <div className="card">
@@ -15,7 +12,7 @@ export default function ActionsCard(props) {
         <ActionCard  number={1} />
         <ActionCard number={3} />
         <ActionCard  number={5} />
-        <ActionCard  number={25} />
+        <ActionCard  number={20} />
       </div>
     </div>
   );

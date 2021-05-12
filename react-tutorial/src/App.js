@@ -1,34 +1,155 @@
-import React, { useState } from "react";
+import React from "react";
+// import useOne from "./useOne";
+// import useCounter from "./useCounter";
 // import { useReducer } from "react";
 // import reducer from "./reducer";
 // import { increment, decrement } from "./actions";
+// import Mouse from "./Mouse";
+import Card from "./Card";
+
+function App() {
+    return(
+        <>
+        <Card />
+        <Card />
+        <Card />
+        </>
+    )
+}
+
+// function App() {
+//   return (
+//     <>
+//       <Mouse render={(data)=>{
+//           return <p>{data.x}:{data.y}</p>
+//       }} />
+//     </>
+//   );
+// }
 
 // import Content from "./Content";
 // import RecfunursiveButton from "./RecursiveButton";
 // import CityesList from "./CitiesList";
 // import City from "./City";
-import ActionsCard from "./ActionsCard";
-import StatusCard from "./StatusCard";
-import Context from "./Context";
+// import ActionsCard from "./ActionsCard";
+// import StatusCard from "./StatusCard";
+// import Context from "./Context";
+// import useSmartCounter from "./useSmartCounter";
+
+// function App() {
+//   const { counter, add1, add5, remove1, remove5 } = useSmartCounter();
+
+//   return (
+//     <div>
+//       <button onClick={add1}>+1</button>
+//       <br />
+//       <button onClick={add5}>+5</button>
+//       <br />
+//       <p>{counter}</p>
+//       <button onClick={remove1}>-1</button>
+//       <br />
+//       <button onClick={remove5}>-5</button>
+//       <br />
+//     </div>
+//   );
+// }
+
+// function App() {
+//   useOne(() => {
+//     console.log("fired");
+//   });
+
+//   const {counter, count} = useCounter();
+//   return (
+//     <button onClick={count}>
+//       На меня нажали {counter} раз
+//     </button>
+//   );
+// }
+// function App(props) {
+//   const [name, SetName] = useState("");
+//   const [surename, SetSurename] = useState("");
+
+//   const surenameInputRef = useRef();
+//   const nameInputRef = useRef();
+
+//   const handlerKeyUp1 = (e) => {
+//     if ((e.key === "Enter")) {
+//       surenameInputRef.current.focus();
+//     }
+//   };
+//   const handlerKeyUp2 = (e) => {
+//     if ((e.key === "Enter")) {
+//       nameInputRef.current.focus();
+//     }
+//   };
+//   return (
+//     <form>
+//       <input
+//         ref={nameInputRef}
+//         type="text"
+//         placeholder="FirstName"
+//         value={name}
+//         onChange={(e) => SetName(e.target.value)}
+//         onKeyUp={handlerKeyUp1}
+//       ></input>
+//       <br />
+//       <input
+//         ref={surenameInputRef}
+//         type="text"
+//         placeholder="SecondName"
+//         value={surename}
+//         onChange={(e) => SetSurename(e.target.value)}
+//         onKeyUp={handlerKeyUp2}
+//       ></input>
+//     </form>
+//   );
+// }
+// function App() {
+//   const [counter, setCounter] = useState(0);
+
+//   const ref = useRef();
+
+//   useEffect(() => {
+//    ref.current = {
+//      counter: 0,
+//    }
+//   }, []);
+
+//   return (
+//     <div>
+//       <button onClick={() => ref.current.counter++}>
+//       На меня нажали {counter} раз.
+//     </button>
+//     <br/>
+//     <button onClick={() =>setCounter(ref.current.counter)}>
+//       Обновить
+//     </button>
+//     </div>
+//   );
+// }
+
 //action
 
-function App() {
-  const [counter, setCounter] = useState(0);
-  const count = (n) => setCounter(counter + n);
+// function App() {
+//   const [counter, setCounter] = useState(0);
+//   const count = (n) => setCounter(counter + n);
 
-  const value = {
-    counter,
-    count,
-  };
-  return (
-    <Context.Provider value={value}>
-      <div class="container">
-        <StatusCard />
-        <ActionsCard />
-      </div>
-    </Context.Provider>
-  );
-}
+//   const value = {
+//     counter,
+//     count,
+//   };
+
+//   return (
+//     //declare global context and "value' available on all children
+//     <Context.Provider value={value}>
+//       <div class="container">
+//         <StatusCard />
+//         <ActionsCard />
+//       </div>
+//     </Context.Provider>
+//   );
+// }
 
 // function App() {
 //   const [state, dispatch] = useReducer(reducer, {
