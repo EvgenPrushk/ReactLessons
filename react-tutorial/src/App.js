@@ -1,21 +1,76 @@
-import React from "react";
+import React, { useCallback } from "react";
 // import useOne from "./useOne";
 // import useCounter from "./useCounter";
 // import { useReducer } from "react";
 // import reducer from "./reducer";
 // import { increment, decrement } from "./actions";
 // import Mouse from "./Mouse";
-import Card from "./Card";
+// import Card from "./Card";
 
 function App() {
-    return(
-        <>
-        <Card />
-        <Card />
-        <Card />
-        </>
-    )
+  const [User, setUser] = useState({
+    name: "",
+    surname: "",
+  });
+  const ENTER = "Enter";
+  
+
+const refName = useRef();
+const refSurname = useRef();
+  return (
+    <div>
+      <input
+        placeholder="name"
+        value={user.name}
+        onChange={(e) => setUser((user) => ({ ...user, name: e.target.value }))}
+      />
+      <br />
+      <input
+        placeholder="surname"
+        value={user.surname}
+        onChange={(e) => setUser((user) => ({ ...user, name: e.target.value }))}
+      />
+      <br />
+      <button onClick={clickHandler}>Send</button>
+    </div>
+  );
 }
+// const ENTER = "Enter";
+// function App() {
+//   //   const [value, setValue] = useState("");
+//   const ref = useRef();
+
+//   const clickHandler = useCallback(() => {
+//     console.log(ref.current.value);
+//   }, [ref]);
+//   // event for keyup
+//   const keyupHandler = useCallback(
+//     (e) => {
+//       const { key } = e;
+//       if (key === ENTER) {
+//         clickHandler();
+//       }
+//     },
+//     [clickHandler]
+//   );
+//   // add keyup event add remove keyup
+//  useEffect(() => {
+//     if (ref.current) {
+//       ref.current.addEventListener("keyup", keyupHandler);
+//       return () => {
+//         ref.current.removeEventListener("keyup", keyupHandler);
+//       };
+//     }
+//   }, [keyupHandler]);
+
+//   return (
+//     <div>
+//       {/* <input value={value}  onChange={e=>setValue(e.target.value)}/> */}
+//       <input ref={ref} />
+//       <button onClick={clickHandler}> Отправить</button>
+//     </div>
+//   );
+// }
 
 // function App() {
 //   return (
