@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 // import useOne from "./useOne";
 // import useCounter from "./useCounter";
 // import { useReducer } from "react";
@@ -6,25 +6,63 @@ import React, { useCallback, useEffect, useRef } from "react";
 // import { increment, decrement } from "./actions";
 // import Mouse from "./Mouse";
 // import Card from "./Card";
-import UserCard from "./UserCard";
-
-const users = [
-  { id: 1, name: "Aleks", surname: "Dan" },
-  { id: 2, name: "Mark", surname: "Brod" },
-  { id: 3, name: "Sergei", surname: "Minko" },
-  { id: 4, name: "Lena", surname: "Sappo" },
-];
+// import UserCard from "./UserCard";
+import { Table, TableHead, TableRow, TableCell, TableBody } from "./Components";
 
 function App() {
+  const ref = useRef();
+  
+  useEffect(() => {
+    console.log(ref.current);
+  }, [])
+  
   return (
-    <div>
-      <UserCard user={users[0]} onSendMessage={() => console.log(users[0])} />
-      <UserCard user={users[1]} onSendInvite ={() => console.log(users[1])} />
-      <UserCard user={users[2]} />
-      <UserCard user={users[3]} />
-    </div>
+    <Table>
+      <TableHead>
+        <TableRow>
+          <TableCell ref={ref}>id</TableCell>
+          <TableCell>Name</TableCell>
+          <TableCell>SurName</TableCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        <TableRow>
+          <TableCell>1</TableCell>
+          <TableCell onClick={() => console.log("aleks")}>Aleks</TableCell>
+          <TableCell>Dan</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>2</TableCell>
+          <TableCell>Marius</TableCell>
+          <TableCell>Varden</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>3</TableCell>
+          <TableCell>Morko</TableCell>
+          <TableCell>San</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
   );
 }
+
+// const users = [
+//   { id: 1, name: "Aleks", surname: "Dan" },
+//   { id: 2, name: "Mark", surname: "Brod" },
+//   { id: 3, name: "Sergei", surname: "Minko" },
+//   { id: 4, name: "Lena", surname: "Sappo" },
+// ];
+
+// function App() {
+//   return (
+//     <div>
+//       <UserCard user={users[0]} onSendMessage={() => console.log(users[0])} />
+//       <UserCard user={users[1]} onSendInvite ={() => console.log(users[1])} />
+//       <UserCard user={users[2]} />
+//       <UserCard user={users[3]} />
+//     </div>
+//   );
+// }
 
 // const ENTER = "Enter";
 // function App() {
