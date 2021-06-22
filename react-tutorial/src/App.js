@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 // import useOne from "./useOne";
 // import useCounter from "./useCounter";
 // import { useReducer } from "react";
@@ -7,34 +7,124 @@ import React, { useCallback } from "react";
 // import Mouse from "./Mouse";
 // import Card from "./Card";
 
+const ENTER = "Enter";
 function App() {
-  const [User, setUser] = useState({
-    name: "",
-    surname: "",
-  });
-  const ENTER = "Enter";
-  
+  const refName = useRef();
+  const refSurname = useRef();
+  const refSend = useRef();
 
-const refName = useRef();
-const refSurname = useRef();
+  const userLog = useCallback(() => {
+    const user = {
+      name: refName.current.value,
+      surname: refSurname.current.value,
+    };
+    console.log(user);
+  }, [refName, refSurname]);
+
+  const keyupHandler = useCallback(
+    (event) => {
+      const { key } = event;
+      if (key !== ENTER) {
+        return;
+      }
+      // if null refNane  => focus
+      if (refName.current && !refName.current.value) {
+        return refName.current.focus();
+      }
+      if (refSurname.current && !refSurname.current.value) {
+        return refSurname.current.focus();
+      }
+
+      userLog();
+    },
+    [userLog, refName, refSurname]
+  );
+  // if keyup refName.current or refSurname.current use keyupHandler
+  useEffect(() => {
+    if (refName.current && refSurname.current && refSend.current) {
+      refName.current.addEventListener("keyup", keyupHandler);
+      refSurname.current.addEventListener("keyup", keyupHandler);
+      refSend.current.addEventListener("click", userLog);
+      return () => {
+        refName.current.removeEventListener("keyup", keyupHandler);
+        refSurname.current.rerefName.current.removeEventListener(
+          "keyup",
+          keyupHandler
+        );
+        refSend.current.removeEventListener("click", userLog);
+      };
+    }
+  }, [refName, refSurname, refSend, keyupHandler]);
+
   return (
     <div>
-      <input
-        placeholder="name"
-        value={user.name}
-        onChange={(e) => setUser((user) => ({ ...user, name: e.target.value }))}
-      />
+      <input placeholder="name" ref={refName} />
       <br />
-      <input
-        placeholder="surname"
-        value={user.surname}
-        onChange={(e) => setUser((user) => ({ ...user, name: e.target.value }))}
-      />
+      <input placeholder="surname" ref={refSurname} />
       <br />
-      <button onClick={clickHandler}>Send</button>
+      <button ref={refSend}>Send</button>
     </div>
   );
 }
+
+// const ENTER = "Enter";
+// function App() {
+//   const [user, setUser] = useState({
+//     name: "",
+//     surname: "",
+//   });
+
+//   const refName = useRef();
+//   const refSurname = useRef();
+
+//   const userLog = useCallback(() => {
+//     console.log(user);
+//   }, [user]);
+
+//   const keyupHandler = useCallback(
+//     (event) => {
+//       const { key } = event;
+//       if (key !== ENTER) {
+//         return;
+//       }
+//       // if null refNane  => focus
+//       if (refName.current && !refName.current.value) {
+//         return refName.current.focus();
+//       }
+//       if (refSurname.current && !refSurname.current.value) {
+//         return refSurname.current.focus();
+//       }
+
+//       userLog();
+//     },
+//     [userLog, refName, refSurname]
+//   );
+
+//   return (
+//     <div>
+//       <input
+//         placeholder="name"
+//         ref={refName}
+//         value={user.name}
+//         onChange={(e) => setUser((user) => ({ ...user, name: e.target.value }))}
+//         onKeyUp={keyupHandler}
+//       />
+//       <br />
+//       <input
+//         placeholder="surname"
+//         ref={refSurname}
+//         value={user.surname}
+//         onChange={(e) =>
+//           setUser((user) => ({ ...user, surname: e.target.value }))
+//         }
+//         onKeyUp={keyupHandler}
+//       />
+//       <br />
+//       <button onClick={userLog}>Send</button>
+//     </div>
+//   );
+// }
+
 // const ENTER = "Enter";
 // function App() {
 //   //   const [value, setValue] = useState("");
