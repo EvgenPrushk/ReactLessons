@@ -6,66 +6,85 @@ import React, { useCallback, useEffect, useRef } from "react";
 // import { increment, decrement } from "./actions";
 // import Mouse from "./Mouse";
 // import Card from "./Card";
+import UserCard from "./UserCard";
 
-const ENTER = "Enter";
+const users = [
+  { id: 1, name: "Aleks", surname: "Dan" },
+  { id: 2, name: "Mark", surname: "Brod" },
+  { id: 3, name: "Sergei", surname: "Minko" },
+  { id: 4, name: "Lena", surname: "Sappo" },
+];
+
 function App() {
-  const refName = useRef();
-  const refSurname = useRef();
-  const refSend = useRef();
-
-  const userLog = useCallback(() => {
-    const user = {
-      name: refName.current.value,
-      surname: refSurname.current.value,
-    };
-    console.log(user);
-  }, [refName, refSurname]);
-
-  const keyupHandler = useCallback(
-    (event) => {
-      const { key } = event;
-      if (key !== ENTER) {
-        return;
-      }
-      // if null refNane  => focus
-      if (refName.current && !refName.current.value) {
-        return refName.current.focus();
-      }
-      if (refSurname.current && !refSurname.current.value) {
-        return refSurname.current.focus();
-      }
-
-      userLog();
-    },
-    [userLog, refName, refSurname]
-  );
-  // if keyup refName.current or refSurname.current use keyupHandler
-  useEffect(() => {
-    if (refName.current && refSurname.current && refSend.current) {
-      refName.current.addEventListener("keyup", keyupHandler);
-      refSurname.current.addEventListener("keyup", keyupHandler);
-      refSend.current.addEventListener("click", userLog);
-      return () => {
-        refName.current.removeEventListener("keyup", keyupHandler);
-        refSurname.current.rerefName.current.removeEventListener(
-          "keyup",
-          keyupHandler
-        );
-        refSend.current.removeEventListener("click", userLog);
-      };
-    }
-  }, [refName, refSurname, refSend, keyupHandler]);
-
   return (
     <div>
-      <input placeholder="name" ref={refName} />
-      <br />
-      <input placeholder="surname" ref={refSurname} />
-      <br />
-      <button ref={refSend}>Send</button>
+      <UserCard user={users[0]} onSendMessage={() => console.log(users[0])} />
+      <UserCard user={users[1]} onSendInvite ={() => console.log(users[1])} />
+      <UserCard user={users[2]} />
+      <UserCard user={users[3]} />
     </div>
   );
 }
+
+// const ENTER = "Enter";
+// function App() {
+//   const refName = useRef();
+//   const refSurname = useRef();
+//   const refSend = useRef();
+
+//   const userLog = useCallback(() => {
+//     const user = {
+//       name: refName.current.value,
+//       surname: refSurname.current.value,
+//     };
+//     console.log(user);
+//   }, [refName, refSurname]);
+
+//   const keyupHandler = useCallback(
+//     (event) => {
+//       const { key } = event;
+//       if (key !== ENTER) {
+//         return;
+//       }
+//       // if null refNane  => focus
+//       if (refName.current && !refName.current.value) {
+//         return refName.current.focus();
+//       }
+//       if (refSurname.current && !refSurname.current.value) {
+//         return refSurname.current.focus();
+//       }
+
+//       userLog();
+//     },
+//     [userLog, refName, refSurname]
+//   );
+//   // if keyup refName.current or refSurname.current use keyupHandler
+//   useEffect(() => {
+//     if (refName.current && refSurname.current && refSend.current) {
+//       refName.current.addEventListener("keyup", keyupHandler);
+//       refSurname.current.addEventListener("keyup", keyupHandler);
+//       refSend.current.addEventListener("click", userLog);
+//       return () => {
+//         refName.current.removeEventListener("keyup", keyupHandler);
+//         refSurname.current.rerefName.current.removeEventListener(
+//           "keyup",
+//           keyupHandler
+//         );
+//         refSend.current.removeEventListener("click", userLog);
+//       };
+//     }
+//   }, [refName, refSurname, refSend, keyupHandler]);
+
+//   return (
+//     <div>
+//       <input placeholder="name" ref={refName} />
+//       <br />
+//       <input placeholder="surname" ref={refSurname} />
+//       <br />
+//       <button ref={refSend}>Send</button>
+//     </div>
+//   );
+// }
 
 // const ENTER = "Enter";
 // function App() {
